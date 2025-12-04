@@ -3,19 +3,19 @@ class Person:
         self.name = name
     
     def introduce(self):
-        print(f"Hi, I'm {self.name}")
+        print(f"Hi, I'm {self.name}.")
 
 class Customer(Person):
     def __init__(self, name, address):
-        super().__init__(self, name)
+        super().__init__(name)
         self.address = address
 
     def place_order(self, item):
-        return DeliveryOrder(self.name, item, "preparing")
+        return DeliveryOrder(Customer(self.name, self.address), item, "preparing")
 
 class Driver(Person):
     def __init__(self, name, vehicle):
-        super().__init__(self, name)
+        super().__init__(name)
         self.vehicle = vehicle
     
     def deliver(self, order):
@@ -24,7 +24,7 @@ class Driver(Person):
 
 class DeliveryOrder:
     def __init__(self, customer, item, status = "preparing"):
-        self.cutomer = customer
+        self.customer = customer
         self.item = item
         self.status = status
         self.driver = ''
@@ -38,3 +38,22 @@ class DeliveryOrder:
         print(f"Customer: {self.customer.name}")
         print(f"Status: {self.status}")
         print(f"Driver: {self.driver.name}")
+
+customer1 = Customer("Alice", "123")
+customer2 = Customer("Bob", "456")
+driver1 = Driver("David", "motorcycle")
+customer1.introduce()
+customer2.introduce()
+driver1.introduce()
+print()
+
+order1 = customer1.place_order("Laptop")
+order1.assign_driver(driver1)
+order1.summary()
+print()
+
+order2 = customer2.place_order("Headphones")
+order2.assign_driver(driver1)
+order2.summary()
+print()
+
