@@ -23,13 +23,18 @@ class Driver(Person):
         print(f"{self.driver_name} is delivering {order.item} to {order.name} using {self.vehicle}.")
 
 class DeliveryOrder:
-    def __init__(self, customer, item, status):
+    def __init__(self, customer, item, status = "preparing"):
         self.cutomer = customer
         self.item = item
         self.status = status
+        self.driver = ''
     
-    def assign_driver(driver):
-        pass
+    def assign_driver(self, driver):
+        self.driver = driver
     
-    def summary():
-        pass
+    def summary(self):
+        print("Order Summary:")
+        print(f"Item: {self.item}")
+        print(f"Customer: {self.customer.name}")
+        print(f"Status: {self.status}")
+        print(f"Driver: {self.driver.name}")
