@@ -20,3 +20,15 @@ class Driver(Person):
     
     def deliver(self, order):
         pass
+
+class DeliveryOrder:
+    def __init__(self, customer, item, status):
+        self.cutomer = customer
+        self.item = item
+        self.status = status
+    
+    def assign_driver(driver):
+        pass
+    
+    def summary():
+        pass
