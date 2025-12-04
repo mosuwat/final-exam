@@ -11,7 +11,7 @@ class Customer(Person):
         self.address = address
 
     def place_order(self, item):
-        pass
+        return DeliveryOrder(self.name, item, "preparing")
 
 class Driver(Person):
     def __init__(self, name, vehicle):
@@ -19,7 +19,8 @@ class Driver(Person):
         self.vehicle = vehicle
     
     def deliver(self, order):
-        pass
+        order.status = "delivered"
+        print(f"{self.driver_name} is delivering {order.item} to {order.name} using {self.vehicle}.")
 
 class DeliveryOrder:
     def __init__(self, customer, item, status):
