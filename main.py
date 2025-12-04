@@ -19,8 +19,11 @@ class Driver(Person):
         self.vehicle = vehicle
     
     def deliver(self, order):
-        order.status = "delivered"
-        print(f"{self.driver_name} is delivering {order.item} to {order.name} using {self.vehicle}.")
+        if order.driver.name != self.name:
+            print("This isn't their order!")
+        else:
+            order.status = "delivered"
+            print(f"{self.name} is delivering {order.item} to {order.customer.name} using {self.vehicle}.")
 
 class DeliveryOrder:
     def __init__(self, customer, item, status = "preparing"):
@@ -57,3 +60,10 @@ order2.assign_driver(driver1)
 order2.summary()
 print()
 
+driver1.deliver(order1)
+driver1.deliver(order2)
+print()
+
+print("Final Status:")
+print(f"Order for Laptop → {order1.status}")
+print(f"Order for Headphones → {order2.status}")
