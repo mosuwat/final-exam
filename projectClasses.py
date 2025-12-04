@@ -30,7 +30,7 @@ class DeliveryOrder:
         self.customer = customer
         self.item = item
         self.status = status
-        self.driver = ''
+        self.driver = None
     
     def assign_driver(self, driver):
         self.driver = driver
@@ -40,30 +40,7 @@ class DeliveryOrder:
         print(f"Item: {self.item}")
         print(f"Customer: {self.customer.name}")
         print(f"Status: {self.status}")
-        print(f"Driver: {self.driver.name}")
-
-customer1 = Customer("Alice", "123")
-customer2 = Customer("Bob", "456")
-driver1 = Driver("David", "motorcycle")
-customer1.introduce()
-customer2.introduce()
-driver1.introduce()
-print()
-
-order1 = customer1.place_order("Laptop")
-order1.assign_driver(driver1)
-order1.summary()
-print()
-
-order2 = customer2.place_order("Headphones")
-order2.assign_driver(driver1)
-order2.summary()
-print()
-
-driver1.deliver(order1)
-driver1.deliver(order2)
-print()
-
-print("Final Status:")
-print(f"Order for Laptop → {order1.status}")
-print(f"Order for Headphones → {order2.status}")
+        if self.driver == None:
+            print(f"Driver: Not assigned")
+        else:
+            print(f"Driver: {self.driver.name}")
